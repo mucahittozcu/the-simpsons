@@ -13,6 +13,24 @@ const Provider = ({ children }) => {
   const [sorting, setSorting] = useState({ key: "name", order: "asc" })
   const [sort, setSort] = useState(true)
 
+  const simpsonsFetchRefresh = async () => {
+    try{
+     const url = 'https://5fc9346b2af77700165ae514.mockapi.io/simpsons';
+     // const url = '/api/simpsons';
+       const response = await fetch(url) 
+       if (!response.ok) {
+         throw new Error('Network hatası');
+       }
+       const data = await response.json()
+       setSimpsData(data)
+       localStorage.setItem('simpsData', JSON.stringify(data))
+       console.log(data);
+    }
+    catch(error){
+     console.error(`Fetch işlemi sırasında bir sorun oluştu${error}`)
+    }
+ }
+
   const data = {
     name,
     setName,
@@ -30,6 +48,7 @@ const Provider = ({ children }) => {
     setSorting,
     sort, 
     setSort,
+    simpsonsFetchRefresh
   }
   return (
     <SiteContext.Provider value={data}>

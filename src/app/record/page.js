@@ -3,6 +3,7 @@ import Link from "next/link"
 import { useContext,useEffect } from "react"
 import SiteContext from "@/context/SiteContext"
 
+
 const page = () => {
 const {name,setName,job,setJob,herHim,setHerHim,image,setImage,setSimpsData,simpsData} = useContext(SiteContext)
 
@@ -26,6 +27,7 @@ const {name,setName,job,setJob,herHim,setHerHim,image,setImage,setSimpsData,simp
     setJob("")
     setHerHim("")
     setImage("")
+    window.location.href = "/"
   }
 
   useEffect(() => {
@@ -81,7 +83,7 @@ const {name,setName,job,setJob,herHim,setHerHim,image,setImage,setSimpsData,simp
             onChange={(event) => setHerHim(event.target.value)}
           />
           <input 
-            type="text"
+            type="url"
             id="image"
             className="w-[300px] pl-5 h-[50px] ml-4 sm:w-[400px] sm:pl-5 sm:h-[40px] sm:ml-32 border rounded-lg "
             placeholder=""
