@@ -91,8 +91,7 @@ const {name,setName,job,setJob,herHim,setHerHim,image,setImage,setSimpsData,simp
             onChange={(event) => setImage(event.target.value)}
           />
              <button type="submit" className="p-3 mr-24 rounded-3xl mt-14 flex justify-center items-center text-white border border-blue-900 text-xl font-semibold ">Add</button>
-          {/* <Link href="/" className="p-3 mr-24 rounded-3xl mt-14 flex justify-center items-center text-white border border-blue-900 text-xl font-semibold ">
-          </Link> */}
+
        </form>
 
      </div>

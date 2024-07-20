@@ -7,6 +7,7 @@ import SiteContext from "@/context/SiteContext"
 import { RxDragHandleHorizontal } from "react-icons/rx";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Image from "next/image";
+import { PiArrowSquareDownFill,PiArrowSquareUpFill } from "react-icons/pi";
 
 const Page = () => {
   const { search, setSearch, simpsData, setSimpsData, sorting, setSorting, sort, setSort, simpsonsFetchRefresh } = useContext(SiteContext)
@@ -76,6 +77,28 @@ const Page = () => {
      localStorage.setItem('simpsData', JSON.stringify(items))
   }
 
+  const handleMoveUp = (index) => {
+    console.log("Moving up:", index)
+    if(index > 0){ 
+    const newList = [...simpsData]
+    const temp = newList[index]
+    newList[index] = newList[index - 1]
+    newList[index - 1] = temp
+    setSimpsData(newList)
+    localStorage.setItem('simpsData', JSON.stringify(newList))
+  }
+}
+  const handleMoveDown = (index) => {
+    console.log("Moving down:", index)
+    if(index < simpsData.length - 1){
+      const newList = [...simpsData]
+      const temp = newList[index]
+      newList[index] = newList[index + 1]
+      newList[index + 1] = temp
+      setSimpsData(newList)
+      localStorage.setItem('simpsData', JSON.stringify(newList))
+    }
+  }
 
   return (
     <div className="relative h-screen w-screen overflow-x-hidden bg-purple-950">
@@ -84,7 +107,7 @@ const Page = () => {
         <button className="absolute top-9 left-8 text-blue-800 text-xl font-bold">🏚️ Sweet Home</button>
       </Link>
       <Link href="/record">
-        <button className="absolute top-8 right-8 sm:absolute sm:top-7 sm:right-8 border border-blue-900 rounded-3xl p-1 sm:p-2 text-white ml-5 text-xl font-bold">✨ Add</button>
+        <button className="absolute top-8 right-8 sm:absolute sm:top-8 sm:right-8 border border-blue-900 rounded-3xl p-1 sm:p-2 text-white ml-5 text-xl font-bold">✨ Add</button>
       </Link>
 
       <div className="h-auto w-screen absolute top-20 gap-y-0 flex flex-col">
@@ -128,7 +151,9 @@ const Page = () => {
                   <li className=" text-white text-xl font-medium sm:text-2xl sm:font-semibold ">{name}</li>
                 </Link>
 
-                <div className="absolute right-14 top-12">
+                <div className="absolute flex right-14 top-12">
+                   <button onClick={() => handleMoveUp(index)} disabled={index === 0}><PiArrowSquareUpFill size={35} color="grey" className="mr-1 mt-1" /></button>
+                   <button onClick={() => handleMoveDown(index)} disabled={index === filteredData.length - 1}><PiArrowSquareDownFill size={35} color="grey" className="mr-5 mt-1" /></button>
                    <button onClick={() => handleDeleteUser(id)}><FaTrashCan color="white" className="w-5 h-7 sm:w-6 sm:h-10 " /></button>
                    <button className="ml-5"><RxDragHandleHorizontal color="grey" className="w-7 h-7 sm:w-8 sm:h-10 " /></button>
                 </div>
