@@ -148,8 +148,8 @@ const Page = () => {
                 </Link>
 
                 <div className="absolute flex right-14 top-12">
-                   <button onClick={() => handleMoveUp(index)} disabled={index === 0}><PiArrowSquareUpFill size={35} color="grey" className="mr-1 mt-1" /></button>
-                   <button onClick={() => handleMoveDown(index)} disabled={index === filteredData.length - 1}><PiArrowSquareDownFill size={35} color="grey" className="mr-5 mt-1" /></button>
+                   {/* <button onClick={() => handleMoveUp(index)} disabled={index === 0}><PiArrowSquareUpFill size={35} color="grey" className="mr-1 mt-1" /></button>
+                   <button onClick={() => handleMoveDown(index)} disabled={index === filteredData.length - 1}><PiArrowSquareDownFill size={35} color="grey" className="mr-5 mt-1" /></button> */}
                    <button onClick={() => handleDeleteUser(id)}><FaTrashCan color="white" className="w-5 h-7 sm:w-6 sm:h-10 " /></button>
                    <button className="ml-5"><RxDragHandleHorizontal color="grey" className="w-7 h-7 sm:w-8 sm:h-10 " /></button>
                 </div>
