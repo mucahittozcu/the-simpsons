@@ -5,7 +5,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import { LuArrowUpAZ, LuArrowDownAZ } from "react-icons/lu";
 import SiteContext from "@/context/SiteContext"
 import { RxDragHandleHorizontal } from "react-icons/rx";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Image from "next/image";
 
 const Page = () => {
@@ -84,7 +84,7 @@ const Page = () => {
         <button className="absolute top-9 left-8 text-blue-800 text-xl font-bold">🏚️ Sweet Home</button>
       </Link>
       <Link href="/record">
-        <button className="absolute top-8 right-8 sm:absolute sm:top-7 sm:right-8 border border-blue-900 rounded-3xl p-1 sm:p-2 text-white ml-5 text-xl font-bold">✨ Add</button>
+        <button className="absolute top-8 right-8 sm:absolute sm:top-8 sm:right-8 border border-blue-900 rounded-3xl p-1 sm:p-2 text-white ml-5 text-xl font-bold">✨ Add</button>
       </Link>
 
       <div className="h-auto w-screen absolute top-20 gap-y-0 flex flex-col">
@@ -111,16 +111,12 @@ const Page = () => {
           </div>
         </div>
    
-        <DragDropContext onDragEnd={handleDragEnd}>   
-           <Droppable droppableId="simpsData" >
-            {(provided) => (
-            <ul className="simpsData" {...provided.droppableProps} ref={provided.innerRef} >
+            <ul className="simpsData" >
             {filteredData.map(({name,avatar,id},index) => (
-              <Draggable  key={id} draggableId={id} index={index}  >
-                {(provided) => (
+             
               <div className={`flex relative pl-5 p-6 sm:pl-10 sm:p-8 items-center gap-x-7 sm:gap-x-10 mb-0 border-t-0 border-l-0 border-r-0 border ${
                 dragListItem === index ? "opacity-50" : ""
-               }`} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} >
+               }`}  >
                <span className="text-white text-2xl font-semibold sm:text-3xl sm:font-bold">{index + 1}.</span>
 
                 <Image src={avatar} alt={`${name} görseli`} width={140} height={140} className="w-12 h-14 sm:w-20 sm:h-28 " />
@@ -133,14 +129,12 @@ const Page = () => {
                    <button className="ml-5"><RxDragHandleHorizontal color="grey" className="w-7 h-7 sm:w-8 sm:h-10 " /></button>
                 </div>
               </div>
-              )}
-              </Draggable>
+              
+            
             ))}
-            {provided.placeholder}
-           </ul>
-           )}
-           </Droppable>
-        </DragDropContext>
+            
+            </ul>
+         
 
       </div>
     </div>
